@@ -1,0 +1,4 @@
+node_modules/
+output/
+.omc/
+.DS_Store
