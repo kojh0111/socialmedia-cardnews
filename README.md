@@ -3,10 +3,43 @@
 주제만 입력하면 Claude가 장수·톤·출력 방식을 함께 정하고, 한국어 N장 카드뉴스 캐러셀을
 **1080x1350 PNG**(로컬 제작) 또는 **Canva 디자인**(Canva 연동 시)으로 만들어주는 Claude Code 스킬입니다.
 
-## 준비물
+## 처음 쓰는 사람용 — A to Z
 
-- [Claude Code](https://claude.com/claude-code) 설치
-- Node.js 18 이상 (PNG 자동 추출용)
+### 준비 (최초 1회, 약 10분)
+
+1. **Claude 구독** — Claude Pro 이상 필요 (스킬은 무료, 실행은 본인 계정)
+2. **Node.js 설치** — [nodejs.org](https://nodejs.org)에서 LTS 버전 (PNG 추출에 필요)
+3. **Claude Code 설치** — 터미널에서:
+   ```bash
+   npm install -g @anthropic-ai/claude-code
+   ```
+4. **첫 실행 + 로그인** — `claude` 입력하면 브라우저로 로그인 안내가 뜹니다
+5. **스킬 설치** — Claude Code 안에서 두 줄:
+   ```
+   /plugin marketplace add kojh0111/socialmedia-cardnews
+   /plugin install cardnews@socialmedia-cardnews
+   ```
+
+### 첫 사용 (최초 1회, 약 5분)
+
+6. **작업 폴더 만들고 실행**:
+   ```bash
+   mkdir my-cardnews && cd my-cardnews && claude
+   ```
+7. **첫 카드뉴스 요청**: `/cardnews 주제: 원하는 주제`
+8. **페르소나 온보딩 (자동 시작)** — 타깃이 누구인지, 브랜드가 있는지(브랜드명·@핸들·컬러·톤) 물어봅니다. 로고가 있으면 `assets/logo.png`로 넣어주세요 — 색까지 분석해 반영합니다. 답변은 `cardnews.config.json`에 저장되고 다시 묻지 않습니다.
+9. **장수·톤 선택 → 문구 초안 확인 → 제작** — 중간에 Playwright 설치를 물어보면 승인 (최초 1회만)
+10. **결과물 수령** — `output/주제명/` 폴더에 `slide-01.png` ~ `slide-N.png`
+
+### 이후 일상 사용 (회당 1~2분)
+
+주제만 입력하면 끝:
+```
+/cardnews 주제: 프리랜서가 가격을 낮추면 안 되는 이유
+```
+수정도 말로: "1장 훅 더 날카롭게", "여백 더 넓게"
+
+---
 
 ## 설치
 
@@ -75,14 +108,16 @@ output/ai-instagram-content/
 
 ## Canva 연동 (선택)
 
-결과물을 HTML/PNG 대신 **수정 가능한 Canva 디자인**으로 받고 싶다면 Canva MCP를 연결하세요:
+결과물을 HTML/PNG 대신 **수정 가능한 Canva 디자인**으로 받고 싶을 때. 활성화 절차 (최초 1회):
 
-```bash
-claude mcp add canva -- npx -y mcp-remote@latest https://mcp.canva.com/mcp
-```
-
-연결 후 Claude Code를 재시작하고 `/mcp`에서 Canva 로그인을 완료하면,
-카드뉴스 제작 시 "Canva 디자인 생성"을 선택할 수 있습니다.
+1. 카드뉴스 제작 중 출력 방식에서 "Canva"를 선택하거나, 그냥 "Canva로 만들어줘"라고 말하기
+2. 연결이 안 돼 있으면 **Claude가 등록 명령을 대신 실행**해줍니다 (직접 하려면 아래):
+   ```bash
+   claude mcp add canva -- npx -y mcp-remote@latest https://mcp.canva.com/mcp
+   ```
+3. Claude Code 재시작 (`exit` 후 다시 `claude`)
+4. `/mcp` 입력 → canva 선택 → 브라우저에서 Canva 계정 로그인
+5. 끝 — 이후에는 "Canva로 만들어줘" 한마디면 됩니다 (연결은 계속 유지)
 
 - **로컬 PNG 모드**: 레이아웃을 픽셀 단위로 정밀 제어, MCP 불필요 (기본·추천)
 - **Canva 모드**: 결과물을 Canva에서 직접 수정 가능, 세부 레이아웃 제어는 상대적으로 약함
