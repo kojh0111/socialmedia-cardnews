@@ -2,3 +2,7 @@ node_modules/
 output/
 .omc/
 .DS_Store
+
+# 개인 설정·브랜드 에셋 (공개 repo에 올리지 않음)
+cardnews.config.json
+assets/

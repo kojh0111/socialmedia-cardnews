@@ -10,22 +10,29 @@
 
 ## 설치
 
-이 폴더를 통째로 받은 뒤, 폴더 안에서 Claude Code를 실행하면 끝입니다.
+### 방법 A — 플러그인 설치 (추천, 모든 프로젝트에서 사용 가능)
+
+Claude Code 안에서 두 명령이면 끝납니다:
+
+```
+/plugin marketplace add kojh0111/socialmedia-cardnews
+/plugin install cardnews@socialmedia-cardnews
+```
+
+### 방법 B — 저장소 클론 (이 프로젝트 안에서만 사용)
 
 ```bash
-cd loveomom
+git clone https://github.com/kojh0111/socialmedia-cardnews.git
+cd socialmedia-cardnews
 claude
 ```
 
-PNG 자동 추출을 위해 최초 1회만 Playwright를 설치합니다 (Claude가 필요 시 직접 설치해 주기도 합니다):
+어느 방법이든 PNG 자동 추출에 Playwright가 필요합니다. Claude가 필요할 때 직접 설치해 주지만, 미리 해두려면:
 
 ```bash
-npm install
+npm install playwright
 npx playwright install chromium
 ```
-
-다른 프로젝트에서도 쓰고 싶다면 `.claude/skills/cardnews` 폴더를
-`~/.claude/skills/cardnews`로 복사하면 모든 프로젝트에서 사용할 수 있습니다.
 
 ## 사용법
 

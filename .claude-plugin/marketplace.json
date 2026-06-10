@@ -1,0 +1,13 @@
+{
+  "name": "socialmedia-cardnews",
+  "owner": {
+    "name": "kojh0111"
+  },
+  "plugins": [
+    {
+      "name": "cardnews",
+      "source": "./",
+      "description": "한국어 카드뉴스 캐러셀 자동 제작 (페르소나·브랜드 설정 기반, PNG/Canva 출력)"
+    }
+  ]
+}
